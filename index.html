@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amartya Mannava - AI/ML Specialist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #ffffff;
+            --text: #000000;
+            --text-secondary: #666666;
+            --border: #e0e0e0;
+            --accent: #000000;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'IBM Plex Mono', monospace;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Crimson Text', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1.5rem 0;
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--text-secondary);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        section {
+            padding: 8rem 0;
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Hero Section */
+        #home {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 5rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-summary {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+            max-width: 700px;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .contact-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--text);
+            padding-bottom: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            color: var(--text-secondary);
+            border-color: var(--text-secondary);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border: 1px solid var(--text);
+            color: var(--text);
+            background: transparent;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--border);
+        }
+
+        /* Section Headers */
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-number {
+            font-family: 'Crimson Text', serif;
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.8;
+        }
+
+        /* About Section */
+        #about {
+            background: #fafafa;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .skill-item {
+            padding: 1rem;
+            border: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            border-color: var(--text);
+            background: var(--bg);
+        }
+
+        /* Experience Timeline */
+        .experience-list {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 1px solid var(--border);
+        }
+
+        .experience-item {
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -2.4rem;
+            top: 0.3rem;
+            width: 0.8rem;
+            height: 0.8rem;
+            background: var(--text);
+            border-radius: 50%;
+        }
+
+        .experience-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .experience-title {
+            font-size: 1.5rem;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .experience-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .experience-company {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .experience-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .experience-description ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .experience-description li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .experience-description li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 3rem;
+        }
+
+        .project-card {
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            border-color: var(--text);
+            transform: translateY(-4px);
+        }
+
+        .project-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .tech-tag {
+            font-size: 0.75rem;
+            padding: 0.4rem 0.8rem;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        /* Blog Grid */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .blog-card {
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            border-color: var(--text);
+            transform: translateY(-4px);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .blog-content {
+            padding: 2rem;
+        }
+
+        .blog-date {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .blog-excerpt {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .read-more {
+            font-size: 0.9rem;
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 1px solid var(--text);
+        }
+
+        .like-button {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: none;
+            border: 1px solid var(--border);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+
+        .like-button:hover {
+            border-color: var(--text);
+        }
+
+        .like-button.liked {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .heart-icon {
+            font-size: 1rem;
+        }
+
+        /* Blog Post View */
+        #blog-post-view {
+            display: none;
+            padding: 8rem 0;
+        }
+
+        #blog-post-view.active {
+            display: block;
+        }
+
+        .blog-post-header {
+            max-width: 800px;
+            margin: 0 auto 3rem;
+        }
+
+        .blog-post-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .blog-post-meta {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-post-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .blog-post-tags .tech-tag {
+            font-size: 0.75rem;
+            padding: 0.4rem 0.8rem;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .blog-post-like-top {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .blog-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .blog-post-image {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto 3rem;
+            display: block;
+        }
+
+        .blog-post-content {
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .blog-post-content h1,
+        .blog-post-content h2,
+        .blog-post-content h3 {
+            font-family: 'Crimson Text', serif;
+            color: var(--text);
+            margin: 2rem 0 1rem;
+        }
+
+        .blog-post-content h2 {
+            font-size: 2rem;
+        }
+
+        .blog-post-content h3 {
+            font-size: 1.5rem;
+        }
+
+        .blog-post-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-post-content img {
+            width: 100%;
+            margin: 2rem 0;
+            border: 1px solid var(--border);
+        }
+
+        .blog-post-content pre {
+            background: #fafafa;
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        .blog-post-content code {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        .blog-post-content ul,
+        .blog-post-content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-post-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-post-content blockquote {
+            border-left: 3px solid var(--text);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 2rem;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--border);
+            text-decoration: none;
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        .back-button:hover {
+            border-color: var(--text);
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        /* Education */
+        .education-item {
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .education-item:last-child {
+            border-bottom: none;
+        }
+
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .education-degree {
+            font-size: 1.5rem;
+            font-family: 'Crimson Text', serif;
+        }
+
+        .education-date {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .education-school {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .education-details {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .education-details ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .education-details li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .education-details li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: #fafafa;
+        }
+
+        .contact-content {
+            max-width: 600px;
+        }
+
+        form {
+            margin-top: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--border);
+            background: var(--bg);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--text);
+        }
+
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            border-top: 1px solid var(--border);
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .projects-grid,
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .blog-post-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hide sections when viewing blog post */
+        body.viewing-blog-post section:not(#blog-post-view) {
+            display: none;
+        }
+
+        body.viewing-blog-post nav {
+            display: none;
+        }
+
+        body.viewing-blog-post footer {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#home" class="logo">AM</a>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Amartya Mannava</h1>
+                <p class="hero-subtitle">AI/ML Specialist & Research Affiliate</p>
+                <p class="hero-summary">
+                    I architect scalable cloud infrastructure, deploy production machine learning pipelines, 
+                    and develop intelligent automation systems. Currently pursuing Master's in Computer Science 
+                    at Boston University while building end-to-end AutoML frameworks processing 10TB+ medical 
+                    imaging datasets.
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:amyman@bu.edu">amyman@bu.edu</a>
+                    <a href="tel:+13147934990">+1-314-793-4990</a>
+                    <a href="https://www.linkedin.com/in/amartya-mannava-36b116166" target="_blank">LinkedIn</a>
+                    <span>Boston, MA</span>
+                </div>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn">Get in touch</a>
+                    <a href="#projects" class="btn btn-secondary">View work</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-number">01</div>
+                <h2 class="section-title">About</h2>
+                <p class="section-description">
+                    With 3 years of experience in AI/ML engineering, I specialize in transforming complex 
+                    technical challenges into elegant, scalable solutions. My work spans from enterprise-grade 
+                    automation systems to cutting-edge research in AutoML and transformer architectures.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-number">02</div>
+                <h2 class="section-title">Experience</h2>
+            </div>
+
+            <div class="experience-list">
+                <div class="experience-item fade-in">
+                    <div class="experience-meta">
+                        <h3 class="experience-title">Research Affiliate</h3>
+                        <span class="experience-date">June 2025 — Present</span>
+                    </div>
+                    <div class="experience-company">Boston University</div>
+                    <div class="experience-description">
+                        <ul>
+                            <li>Architecting an end-to-end Agentic AutoML framework to automate data preprocessing, feature engineering, hyperparameter optimization, and model selection using ensemble models</li>
+                            <li>Implementing production-grade ML orchestration using LangGraph, LangChain, and OpenAI APIs to build composable agent workflows with state management, tool calling, and dynamic routing</li>
+                            <li>Deploying distributed ML pipelines using MLflow, Docker, and Kubernetes on AWS EC2 infrastructure, processing 10TB+ of medical histopathology images and genomic expression data with 99.5% accuracy</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item fade-in">
+                    <div class="experience-meta">
+                        <h3 class="experience-title">Lead Developer</h3>
+                        <span class="experience-date">July 2024 — March 2025</span>
+                    </div>
+                    <div class="experience-company">Tick Boxes Management</div>
+                    <div class="experience-description">
+                        <ul>
+                            <li>Spearheaded the design and development of an AI workflow automation system to respond to client queries and dynamically route them to appropriate partner channels, reducing human intervention by 70%</li>
+                            <li>Led a 4-member team to implement an intelligent chatbot using RASA for processing unstructured complaint data and extracting key intents with BERT embeddings, reducing complaint resolution time from 48 hours to 6 hours</li>
+                            <li>Integrated voice recognition models using Whisper AI, improving user accessibility and customer satisfaction</li>
+                            <li>Applied Agile and Scrum methodologies ensuring on-time delivery of 90% of planned features</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item fade-in">
+                    <div class="experience-meta">
+                        <h3 class="experience-title">Software Developer II</h3>
+                        <span class="experience-date">June 2023 — July 2024</span>
+                    </div>
+                    <div class="experience-company">Tick Boxes Management</div>
+                    <div class="experience-description">
+                        <ul>
+                            <li>Pioneered the development of TypeScript-based console on AWS server infrastructure (EC2, Application Load Balancer, DynamoDB) implementing auto-scaling policies to ensure 99.2% uptime</li>
+                            <li>Coordinated with a team of 3 developers using Git and GitLab for CI/CD, reducing average deployment time from 4 hours to 25 minutes through automated testing and blue-green deployment strategy</li>
+                            <li>Optimized MongoDB performance through compound indexing and covered queries, refactoring aggregation pipelines to reduce query execution time by 73%</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item fade-in">
+                    <div class="experience-meta">
+                        <h3 class="experience-title">Software Engineer</h3>
+                        <span class="experience-date">August 2022 — June 2023</span>
+                    </div>
+                    <div class="experience-company">Graymatrix Solutions</div>
+                    <div class="experience-description">
+                        <ul>
+                            <li>Optimized bottlenecks in critical microservice by using Redis caching strategies to reduce load times by 18% (1.1s to 900ms)</li>
+                            <li>Refactored and optimized legacy JavaScript code by using asynchronous threads (R2DBC drivers) to reduce CPU utilization</li>
+                            <li>Developed RESTful APIs with GraphQL simplifying front-end state management</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-item fade-in">
+                    <div class="experience-meta">
+                        <h3 class="experience-title">Project Lead</h3>
+                        <span class="experience-date">April 2021 — June 2021</span>
+                    </div>
+                    <div class="experience-company">Metamax Ventures (Freelance)</div>
+                    <div class="experience-description">
+                        <ul>
+                            <li>Led a team of two interns to develop a Bluetooth-enabled Android remote camera application</li>
+                            <li>Implemented asynchronous calls, parallel processing, and minimized redundant requests to enhance data transmission efficiency by 42%</li>
+                            <li>Introduced streamlined protocols and data compression techniques to reduce latency and overhead during remote pairing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-number">03</div>
+                <h2 class="section-title">Projects</h2>
+            </div>
+
+            <div class="projects-grid" id="projects-container">
+                <!-- Projects will be loaded dynamically from markdown files -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-number">04</div>
+                <h2 class="section-title">Blog</h2>
+                <p class="section-description">
+                    Thoughts on AI/ML, software engineering, and building scalable systems.
+                </p>
+            </div>
+
+            <div class="blog-grid" id="blog-container">
+                <!-- Blog posts will be loaded dynamically from markdown files -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Post View -->
+    <section id="blog-post-view">
+        <div class="container">
+            <a href="#blog" class="back-button" onclick="closeBlogPost()">← Back to Blog</a>
+            <div class="blog-post-header">
+                <div class="blog-post-tags" id="post-tags"></div>
+                <h1 class="blog-post-title" id="post-title"></h1>
+                <div class="blog-post-meta">
+                    <span id="post-date"></span>
+                    <span>•</span>
+                    <span id="post-reading-time"></span>
+                </div>
+                <div class="blog-post-like-top">
+                    <button class="like-button" id="post-like-button" onclick="toggleLike()">
+                        <span class="heart-icon">♥</span>
+                        <span id="post-like-count">0</span>
+                    </button>
+                    <span style="color: var(--text-secondary); font-size: 0.9rem;">people liked this</span>
+                </div>
+            </div>
+            <img id="post-featured-image" class="blog-post-image" style="display: none;" />
+            <div class="blog-post-content" id="post-content"></div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-number">05</div>
+                <h2 class="section-title">Skills</h2>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-item fade-in">Python</div>
+                <div class="skill-item fade-in">PyTorch</div>
+                <div class="skill-item fade-in">TensorFlow</div>
+                <div class="skill-item fade-in">LangChain</div>
+                <div class="skill-item fade-in">RASA</div>
+                <div class="skill-item fade-in">Airflow</div>
+                <div class="skill-item fade-in">MLflow</div>
+                <div class="skill-item fade-in">AWS EC2</div>
+                <div class="skill-item fade-in">AWS ECS</div>
+                <div class="skill-item fade-in">AWS Lambda</div>
+                <div class="skill-item fade-in">AWS S3</div>
+                <div class="skill-item fade-in">NLP</div>
+                <div class="skill-item fade-in">MongoDB</div>
+                <div class="skill-item fade-in">Redis</div>
+                <div class="skill-item fade-in">Docker</div>
+                <div class="skill-item fade-in">Kubernetes</div>
+                <div class="skill-item fade-in">Git</div>
+                <div class="skill-item fade-in">GitLab CI/CD</div>
+                <div class="skill-item fade-in">GraphQL</div>
+                <div class="skill-item fade-in">TypeScript</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-number">06</div>
+                <h2 class="section-title">Education</h2>
+            </div>
+
+            <div class="education-item fade-in">
+                <div class="education-header">
+                    <h3 class="education-degree">Master of Science in Computer Science</h3>
+                    <span class="education-date">Present — January 2027</span>
+                </div>
+                <div class="education-school">Boston University, Specialization in Artificial Intelligence</div>
+                <div class="education-details">
+                    <ul>
+                        <li>Research Associate with Prof. Mark Kon</li>
+                        <li>Mentor in ACM-W</li>
+                        <li>Student Ambassador at Boston University</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="education-item fade-in">
+                <div class="education-header">
+                    <h3 class="education-degree">Bachelor of Technology in Computer Science</h3>
+                    <span class="education-date">June 2018 — June 2022</span>
+                </div>
+                <div class="education-school">Specialization in Artificial Intelligence</div>
+                <div class="education-details">
+                    <ul>
+                        <li>Published paper titled "Deep Learning based Residual Attention Network for Malware Detection" 
+                            in the International Conference on Intelligent Computing and Control Systems, IEEE 2022</li>
+                        <li>Designed novel Residual Attention Network model with extended quadratic kernel achieving 
+                            96.25% accuracy on testing data</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-number">07</div>
+                <h2 class="section-title">Get in touch</h2>
+                <p class="section-description">
+                    I'm always interested in hearing about new opportunities, collaborations, or just having 
+                    a conversation about AI/ML. Feel free to reach out.
+                </p>
+            </div>
+
+            <div class="contact-content">
+                <form id="contact-form">
+                    <div class="form-group fade-in">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group fade-in">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group fade-in">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn fade-in">Send message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>© 2025 Amartya Mannava. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="app-firebase.js"></script>
+</body>
+</html>
