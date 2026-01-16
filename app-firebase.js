@@ -27,6 +27,9 @@ function initFirebase() {
     }
 }
 
+const appCheck = firebase.appCheck();
+appCheck.activate('RECAPTCHA_V3_SITE_KEY', true);
+
 // Configuration
 const PROJECTS_DIR = 'content/projects/';
 const BLOG_DIR = 'content/blog/';
