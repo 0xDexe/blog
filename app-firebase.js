@@ -27,8 +27,6 @@ function initFirebase() {
     }
 }
 
-const appCheck = firebase.appCheck();
-appCheck.activate('RECAPTCHA_V3_SITE_KEY', true);
 
 // Configuration
 const PROJECTS_DIR = 'content/projects/';
@@ -422,31 +420,31 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, observerOptions);
 
-// Contact form handling
-document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const formData = new FormData(this);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const message = formData.get('message');
-    
-    // Create mailto link
-    const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-    const mailtoLink = `mailto:amyman@bu.edu?subject=${subject}&body=${body}`;
-    
-    // Open email client
-    window.location.href = mailtoLink;
-    
-    // Reset form
-    this.reset();
-});
-
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', async function() {
     // Initialize Firebase
     initFirebase();
+    
+    // Contact form handling
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const formData = new FormData(this);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const message = formData.get('message');
+        
+        // Create mailto link
+        const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
+        const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+        const mailtoLink = `mailto:amyman@bu.edu?subject=${subject}&body=${body}`;
+        
+        // Open email client
+        window.location.href = mailtoLink;
+        
+        // Reset form
+        this.reset();
+    });
     
     // Observe fade-in elements
     document.querySelectorAll('.fade-in').forEach(el => {
