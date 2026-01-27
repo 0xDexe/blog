@@ -15,11 +15,7 @@ Implementing a novel hybrid SSM-Transformer architecture enabling 10x speedup ov
 
 ## Technical Implementation
 
-The Hydra Transformer architecture uses a hybrid approach where different tokens are dynamically routed to either SSM blocks or Transformer blocks based on learned routing decisions. This allows the model to:
-
-1. Process simple patterns efficiently through SSM blocks
-2. Handle complex relationships through Transformer attention
-3. Achieve 10x speedup while maintaining model quality
+The Hydra Transformer architecture uses a hybrid approach where different tokens are dynamically routed to either SSM blocks or Transformer blocks based on learned routing decisions.
 
 ## Performance
 

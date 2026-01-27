@@ -2,6 +2,8 @@
 title: Building an End-to-End Agentic AutoML Framework
 date: January 15, 2026
 image: https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=400&fit=crop
+tags: [AutoML, LangGraph, LangChain, AWS, MLflow, Research]
+likes: 42
 ---
 
 Building an automated machine learning pipeline that can handle everything from data preprocessing to model deployment is a significant challenge. In this post, I'll share my experience developing an agentic AutoML framework at Boston University that processes over 10TB of medical imaging data.
