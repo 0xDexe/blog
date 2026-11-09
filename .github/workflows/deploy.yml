@@ -30,6 +30,9 @@ jobs:
       - name: Build post index
         run: node scripts/build-index.js
 
+      - name: Stamp CSS/JS with this commit so browsers don't use stale copies
+        run: sed -i "s/?v=dev/?v=${GITHUB_SHA::8}/g" index.html
+
       - uses: actions/configure-pages@v5
 
       - uses: actions/upload-pages-artifact@v3
