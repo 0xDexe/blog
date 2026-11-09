@@ -1,30 +1,132 @@
 {
   "blog": [
     {
+      "file": "rl-rollout-long-tail.md",
+      "slug": "rl-rollout-long-tail",
+      "title": "Half of Every RL Rollout Step Waits on the Slowest 10%: What Fixed It, and the 2x That Didn't",
+      "date": "November 08, 2026",
+      "image": "",
+      "tags": [
+        "vLLM",
+        "Reinforcement Learning",
+        "LLM Inference",
+        "Speculative Decoding",
+        "GRPO",
+        "Systems"
+      ],
+      "excerpt": "For two days, my headline result was that my RL rollout scheduler ran 2.4x faster than the baseline, and I was about to build this post around it. Before writing, I…"
+    },
+    {
       "file": "building-automl-framework.md",
-      "slug": "building-automl-framework"
+      "slug": "building-automl-framework",
+      "title": "Building an End-to-End Agentic AutoML Framework",
+      "date": "January 15, 2026",
+      "image": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=400&fit=crop",
+      "tags": [
+        "AutoML",
+        "LangGraph",
+        "LangChain",
+        "AWS",
+        "MLflow",
+        "Research"
+      ],
+      "excerpt": "Building an automated machine learning pipeline that can handle everything from data preprocessing to model deployment is a significant challenge. In this post, I'll…"
     },
     {
       "file": "llm-orchestration.md",
-      "slug": "llm-orchestration"
+      "slug": "llm-orchestration",
+      "title": "LLM Orchestration in Production - Lessons from Building an AI Chatbot",
+      "date": "January 10, 2026",
+      "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop",
+      "tags": [
+        "LLM",
+        "RASA",
+        "BERT",
+        "NLP",
+        "Production",
+        "Chatbot"
+      ],
+      "excerpt": "When we set out to build an intelligent chatbot at Tick Boxes Management, we knew it needed to do more than just answer questions. It had to understand context, extract…"
     },
     {
       "file": "optimizing-ml-pipelines.md",
-      "slug": "optimizing-ml-pipelines"
+      "slug": "optimizing-ml-pipelines",
+      "title": "Optimizing ML Pipelines - From 4 Hours to 25 Minutes",
+      "date": "January 5, 2026",
+      "image": "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=800&h=400&fit=crop",
+      "tags": [
+        "DevOps",
+        "CI/CD",
+        "AWS",
+        "GitLab",
+        "Optimization",
+        "MongoDB"
+      ],
+      "excerpt": "One of the most impactful projects I worked on at Tick Boxes Management was optimizing our deployment pipeline. We reduced deployment time from 4 hours to 25 minutes—a…"
     }
   ],
   "projects": [
     {
+      "file": "longtail-rl.md",
+      "slug": "longtail-rl",
+      "title": "longtail-rl - Measuring and Fixing the Long Tail in RL Rollouts",
+      "date": "",
+      "image": "",
+      "tags": [
+        "vLLM",
+        "Reinforcement Learning",
+        "Speculative Decoding",
+        "GRPO",
+        "LLM Inference",
+        "Systems"
+      ],
+      "excerpt": "A measurement harness around vLLM's async engine for figuring out where RL rollout time actually goes on a single GPU, and which fixes really help. The…"
+    },
+    {
       "file": "hydra-transformer.md",
-      "slug": "hydra-transformer"
+      "slug": "hydra-transformer",
+      "title": "Hydra Transformer - Hybrid Dynamic Routing Architecture",
+      "date": "",
+      "image": "",
+      "tags": [
+        "PyTorch",
+        "FlashAttention",
+        "NumPy",
+        "State Space Models",
+        "Transformers"
+      ],
+      "excerpt": "Implementing a novel hybrid SSM-Transformer architecture enabling 10x speedup over standard transformers. Developing multi-scale SSM Blocks, extending…"
     },
     {
       "file": "medical-rag.md",
-      "slug": "medical-rag"
+      "slug": "medical-rag",
+      "title": "Medical Document Retrieval-Augmented Generation System",
+      "date": "",
+      "image": "",
+      "tags": [
+        "LangChain",
+        "Pinecone",
+        "OpenAI API",
+        "FAISS",
+        "GPT-4",
+        "RAG"
+      ],
+      "excerpt": "Built comprehensive Retrieval-Augmented Generation pipeline using LangChain, Pinecone vector database, and OpenAI embeddings to retrieve and synthesize medical…"
     },
     {
       "file": "malware-detection.md",
-      "slug": "malware-detection"
+      "slug": "malware-detection",
+      "title": "Deep Learning based Residual Attention Network for Malware Detection",
+      "date": "",
+      "image": "",
+      "tags": [
+        "Deep Learning",
+        "Attention Networks",
+        "ResNet",
+        "Cybersecurity",
+        "IEEE Publication"
+      ],
+      "excerpt": "Published research paper in IEEE 2022 on Deep Learning based Residual Attention Network for Malware Detection at the International Conference on Intelligent…"
     }
   ]
 }

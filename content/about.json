@@ -1,0 +1,87 @@
+{
+  "whoami": [
+    ["role", "AI/ML engineer, 6 years of shipping ML that people actually use"],
+    ["lately", "lead architect on a real-time voice agent platform (650 ms round trips)"],
+    ["tinkering", "making RL rollouts faster with vLLM and speculative decoding"],
+    ["into", "LLM inference, agents, retrieval, and making GPUs earn their keep"],
+    ["where", "Boston, MA"]
+  ],
+  "education": [
+    { "when": "2025 → 2027", "degree": "M.S. Computer Science (AI)", "school": "Boston University", "note": "research with Prof. Mark Kon" },
+    { "when": "2018 → 2022", "degree": "B.Tech Computer Science", "school": "NMIMS", "note": "IEEE ICICCS 2022 paper on malware detection" }
+  ],
+  "toolbox": {
+    "languages": ["Python", "TypeScript", "JavaScript", "Node.js", "Java", "C", "SQL"],
+    "models & agents": ["PyTorch", "TensorFlow", "Keras", "scikit-learn", "pandas", "LangGraph", "LangChain", "MCP", "RASA"],
+    "inference & voice": ["vLLM", "TensorRT", "Whisper", "ElevenLabs", "WebRTC"],
+    "data & retrieval": ["FAISS", "Pinecone", "MongoDB", "Redis", "Kafka", "GraphQL"],
+    "infra & mlops": ["AWS", "SageMaker", "Kubernetes", "Docker", "MLflow", "Kubeflow", "OpenTelemetry", "Git"]
+  },
+  "experience": [
+    {
+      "when": "Mar 2026 → now",
+      "role": "Lead Architect",
+      "org": "talkk.ai",
+      "points": [
+        "Led 9 engineers building the voice agent platform end to end: Whisper speech recognition, LangGraph agents calling MCP tools, and ElevenLabs speech. Round trips got down to 650 ms, fast enough for callers to interrupt naturally.",
+        "Served the models on vLLM (continuous batching, paged attention, KV-cache reuse) with INT8 quantization on autoscaling GPUs, cutting response time per turn by 45%.",
+        "Built FAISS-backed retrieval so the agent answers from company knowledge instead of guessing, and led prompt-injection and jailbreak testing before launch.",
+        "Ran self-hosted Kubeflow pipelines and OpenTelemetry across Kubernetes, Kafka and WebRTC: 300+ concurrent calls, 15,000+ calls a day, 99.9% uptime."
+      ],
+      "tags": ["Voice AI", "LLM", "LangGraph", "MCP", "Whisper", "ElevenLabs", "vLLM", "LLM Inference", "FAISS", "RAG", "Kubeflow", "Kubernetes", "Kafka", "WebRTC", "OpenTelemetry"]
+    },
+    {
+      "when": "Jun 2025 → now",
+      "role": "Research Affiliate",
+      "org": "Boston University",
+      "points": [
+        "Building an AutoML system that handles data cleaning, feature engineering, hyperparameter tuning and model selection with ensembles.",
+        "Agent workflows on LangGraph, LangChain and the OpenAI API, with tool calling, state tracking and dynamic routing.",
+        "Distributed pipelines with MLflow, Docker and Kubernetes on AWS over 10TB+ of medical imaging and genetic data."
+      ],
+      "tags": ["AutoML", "LangGraph", "LangChain", "MLflow", "Docker", "Kubernetes", "AWS", "Research"]
+    },
+    {
+      "when": "Jul 2024 → Mar 2025",
+      "role": "Lead Developer, AI",
+      "org": "Tick Boxes Management",
+      "points": [
+        "Built a rules + ML system that routes and escalates client queries to the right partner channel, cutting human involvement by 70%.",
+        "Led a 4-person team on a RASA chatbot: BERT intent classification quantized and optimized with TensorRT, Pinecone search over past resolutions, and Whisper voice input. Complaint resolution went from 48 hours to 6.",
+        "Deployed the pipeline on AWS SageMaker with automatic retraining triggers and OpenTelemetry tracing."
+      ],
+      "tags": ["RASA", "BERT", "NLP", "Chatbot", "TensorRT", "Pinecone", "Whisper", "AWS", "SageMaker", "OpenTelemetry", "LLM"]
+    },
+    {
+      "when": "Jun 2023 → Jul 2024",
+      "role": "Software Developer II",
+      "org": "Tick Boxes Management",
+      "points": [
+        "TypeScript admin console on AWS (EC2, load balancer, DynamoDB) with auto-scaling and health-check failover: 99.2% uptime through traffic spikes.",
+        "GitLab CI/CD with automated tests, canary checks and blue-green deploys took releases from 4 hours to 25 minutes.",
+        "Compound indexes, covered queries and rewritten aggregation pipelines cut MongoDB query time by 73% on hot endpoints."
+      ],
+      "tags": ["TypeScript", "AWS", "DevOps", "CI/CD", "GitLab", "MongoDB", "Optimization"]
+    },
+    {
+      "when": "May 2021 → Jun 2023",
+      "role": "Full-Stack Developer",
+      "org": "Graymatrix Solutions",
+      "points": [
+        "Owned the vehicle scheduling and dispatch module of transWARE.us (React + Node.js), with GraphQL APIs wiring booking, dispatch and inventory into QuickBooks and payments. SQL tuning and Redis caching cut query times by 22%.",
+        "Moved legacy JavaScript to non-blocking I/O and migrated 15 REST endpoints to GraphQL: 30% less CPU, 35% smaller payloads.",
+        "Jest tests and GitLab CI + Docker pipelines for a team of 5: coverage from 40% to 78%, deploys from 85 to 30 minutes."
+      ],
+      "tags": ["React", "Node.js", "GraphQL", "Redis", "SQL", "CI/CD", "Docker", "GitLab"]
+    },
+    {
+      "when": "May 2020 → May 2021",
+      "role": "Project Lead",
+      "org": "Metamax Ventures",
+      "points": [
+        "Led 2 interns building a Bluetooth (BLE) remote camera system: Kotlin app, Express.js backend and Vue.js dashboard synced through Firebase and WebSockets. A leaner pairing protocol cut connection latency by 35%."
+      ],
+      "tags": ["Kotlin", "Firebase", "Vue.js", "Node.js", "BLE"]
+    }
+  ]
+}
