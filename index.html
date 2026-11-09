@@ -7,10 +7,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
     
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-check-compat.js"></script>
 
     
     <style>
@@ -704,9 +705,45 @@
         }
 
         /* Responsive */
+        .mobile-menu-button {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text);
+        }
+
+        .like-button:disabled {
+            opacity: 0.6;
+            cursor: wait;
+        }
+
         @media (max-width: 768px) {
+            nav .container {
+                position: relative;
+            }
+
+            .mobile-menu-button {
+                display: block;
+            }
+
             nav ul {
+                display: none;
+                flex-direction: column;
                 gap: 1rem;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                margin-top: 1.5rem;
+                padding: 1rem 2rem;
+                background: rgba(255, 255, 255, 0.98);
+                border-bottom: 1px solid var(--border);
+            }
+
+            nav ul.open {
+                display: flex;
             }
 
             .hero-content h1 {
@@ -792,7 +829,7 @@
                 </p>
                 <div class="contact-links">
                     <a href="/cdn-cgi/l/email-protection#ccada1b5a1ada28caeb9e2a9a8b9"><span class="__cf_email__" data-cfemail="f0919d899d919eb09285de959485">[email&#160;protected]</span></a>
-                    <a href="https://www.linkedin.com/in/amartya-mannava-36b116166" target="_blank">LinkedIn</a>
+                    <a href="https://www.linkedin.com/in/amartya-mannava-36b116166" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                     <span>Boston, MA</span>
                 </div>
                 <div class="cta-buttons">
@@ -940,7 +977,7 @@
     <!-- Blog Post View -->
     <section id="blog-post-view">
         <div class="container">
-            <a href="#blog" class="back-button" onclick="closeBlogPost()">← Back to Blog</a>
+            <a href="#blog" class="back-button">← Back to Blog</a>
             <div class="blog-post-header">
                 <div class="blog-post-tags" id="post-tags"></div>
                 <h1 class="blog-post-title" id="post-title"></h1>
@@ -950,14 +987,14 @@
                     <span id="post-reading-time"></span>
                 </div>
                 <div class="blog-post-like-top">
-                    <button class="like-button" id="post-like-button" onclick="toggleLike()">
+                    <button type="button" class="like-button" id="post-like-button" aria-label="Like this post" onclick="toggleLike()">
                         <span class="heart-icon">♥</span>
-                        <span id="post-like-count">0</span>
+                        <span class="like-count" id="post-like-count">–</span>
                     </button>
                     <span style="color: var(--text-secondary); font-size: 0.9rem;">people liked this</span>
                 </div>
             </div>
-            <img id="post-featured-image" class="blog-post-image" style="display: none;" />
+            <img id="post-featured-image" class="blog-post-image" alt="" style="display: none;" />
             <div class="blog-post-content" id="post-content"></div>
         </div>
     </section>
@@ -1071,7 +1108,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>© 2025 Amartya Mannava. All rights reserved.</p>
+            <p>© <span id="footer-year">2026</span> Amartya Mannava. All rights reserved.</p>
         </div>
     </footer>
 

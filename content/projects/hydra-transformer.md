@@ -1,5 +1,6 @@
 ---
 title: Hydra Transformer - Hybrid Dynamic Routing Architecture
+order: 1
 tags: [PyTorch, FlashAttention, NumPy, State Space Models, Transformers]
 ---
 

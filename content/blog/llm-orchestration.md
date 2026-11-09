@@ -3,7 +3,6 @@ title: LLM Orchestration in Production - Lessons from Building an AI Chatbot
 date: January 10, 2026
 image: https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=400&fit=crop
 tags: [LLM, RASA, BERT, NLP, Production, Chatbot]
-likes: 38
 ---
 
 When we set out to build an intelligent chatbot at Tick Boxes Management, we knew it needed to do more than just answer questions. It had to understand context, extract intents from unstructured data, and route queries intelligently. Here's what we learned building a production LLM system that reduced complaint resolution time from 48 hours to 6 hours.

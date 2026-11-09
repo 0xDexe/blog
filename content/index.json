@@ -1,0 +1,30 @@
+{
+  "blog": [
+    {
+      "file": "building-automl-framework.md",
+      "slug": "building-automl-framework"
+    },
+    {
+      "file": "llm-orchestration.md",
+      "slug": "llm-orchestration"
+    },
+    {
+      "file": "optimizing-ml-pipelines.md",
+      "slug": "optimizing-ml-pipelines"
+    }
+  ],
+  "projects": [
+    {
+      "file": "hydra-transformer.md",
+      "slug": "hydra-transformer"
+    },
+    {
+      "file": "medical-rag.md",
+      "slug": "medical-rag"
+    },
+    {
+      "file": "malware-detection.md",
+      "slug": "malware-detection"
+    }
+  ]
+}

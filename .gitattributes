@@ -1,0 +1,2 @@
+# Line endings: keep LF so frontmatter parsing is consistent
+* text=auto eol=lf

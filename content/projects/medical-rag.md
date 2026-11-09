@@ -1,5 +1,6 @@
 ---
 title: Medical Document Retrieval-Augmented Generation System
+order: 2
 tags: [LangChain, Pinecone, OpenAI API, FAISS, GPT-4, RAG]
 ---
 
